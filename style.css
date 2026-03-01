@@ -1,0 +1,596 @@
+/* ===== VARIABLES Y RESET ===== */
+:root {
+    --primary-color: #e50914;
+    --secondary-color: #221f1f;
+    --accent-color: #ffd700;
+    --text-light: #ffffff;
+    --text-dark: #221f1f;
+    --bg-dark: #141414;
+    --shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.5);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* ===== HEADER ===== */
+header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 3rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+}
+
+header p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ===== MAIN ===== */
+main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* ===== SELECTOR DE CATEGORÍA ===== */
+.menu-categoria {
+    position: relative;
+    display: inline-block;
+}
+
+.btn-menu {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-menu:hover {
+    background-color: #ff1722;
+    transform: scale(1.1);
+}
+
+.btn-menu:active {
+    transform: scale(0.95);
+}
+
+.menu-desplegable {
+    position: fixed;
+    top: 5.5rem;
+    right: 2rem;
+    background-color: var(--secondary-color);
+    border: 2px solid var(--accent-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    display: none;
+    flex-direction: column;
+    min-width: 250px;
+    z-index: 99;
+    overflow: hidden;
+}
+
+.menu-desplegable.activo {
+    display: flex;
+    animation: slideDown 0.3s ease-out;
+}
+
+.menu-item {
+    padding: 1rem 1.5rem;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-item:hover {
+    background-color: var(--primary-color);
+    padding-left: 2rem;
+}
+
+/* ===== ANIMACIÓN MENÚ ===== */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== FILTROS ===== */
+.filtros {
+    background: var(--secondary-color);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+    box-shadow: var(--shadow);
+}
+
+.filtros h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+}
+
+.botones-genero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    border: 2px solid var(--accent-color);
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: var(--transition);
+    text-transform: capitalize;
+}
+
+.btn:hover {
+    background-color: var(--accent-color);
+    color: var(--text-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(255, 215, 0, 0.3);
+}
+
+.btn-activo {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+.btn-activo:hover {
+    background-color: #ff1722;
+    border-color: #ff1722;
+}
+
+/* ===== GALERÍA ===== */
+.galerI {
+    margin-bottom: 3rem;
+}
+
+.contenedor-peliculas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+/* ===== PELÍCULAS ===== */
+.pelicula {
+    background: var(--secondary-color);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.pelicula:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.pelicula img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.pelicula:hover img {
+    filter: brightness(0.8);
+}
+
+.info-pelicula {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.pelicula h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+    color: var(--text-light);
+    max-height: 3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pelicula .descripcion {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+}
+
+.pelicula .genero {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-top: auto;
+}
+
+/* ===== OCULTAR PELÍCULAS ===== */
+.pelicula.oculta {
+    display: none;
+}
+
+/* ===== DIRECTORES ===== */
+.contenedor-directores {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.director {
+    background: var(--secondary-color);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.director:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.director img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.director:hover img {
+    filter: brightness(0.8);
+}
+
+.info-director {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.director h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+    color: var(--text-light);
+    max-height: 3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.director .bio {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+}
+
+.director .pais {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-top: auto;
+}
+
+/* ===== OCULTAR DIRECTORES ===== */
+.director.oculta {
+    display: none;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: var(--secondary-color);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 3rem;
+    border-top: 2px solid var(--primary-color);
+}
+
+footer p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .contenedor-peliculas {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .contenedor-directores {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1.5rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .pelicula img {
+        height: 270px;
+    }
+
+    .director img {
+        height: 270px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 2rem 1.5rem;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .btn-menu {
+        top: 1.5rem;
+        right: 1.5rem;
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+
+    .menu-desplegable {
+        top: 5rem;
+        right: 1.5rem;
+        min-width: 220px;
+    }
+
+    .filtros {
+        padding: 1.5rem;
+    }
+
+    .filtros h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .botones-genero {
+        gap: 0.8rem;
+    }
+
+    .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .contenedor-peliculas {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .contenedor-directores {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    main {
+        padding: 0 1.5rem;
+    }
+
+    .pelicula img {
+        height: 225px;
+    }
+
+    .director img {
+        height: 225px;
+    }
+
+    .info-pelicula {
+        padding: 1rem;
+    }
+
+    .info-director {
+        padding: 1rem;
+    }
+
+    .pelicula h3 {
+        font-size: 1rem;
+    }
+
+    .director h3 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 1.5rem 1rem;
+        margin-bottom: 2rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    header p {
+        font-size: 0.9rem;
+    }
+
+    main {
+        padding: 0 1rem;
+    }
+
+    .btn-menu {
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .menu-desplegable {
+        top: 4.5rem;
+        right: 1rem;
+        min-width: 200px;
+    }
+
+    .menu-item {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .filtros {
+        padding: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .filtros h2 {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .botones-genero {
+        gap: 0.5rem;
+    }
+
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .contenedor-peliculas {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+
+    .contenedor-directores {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+
+    .pelicula img {
+        height: 200px;
+    }
+
+    .director img {
+        height: 200px;
+    }
+
+    .info-pelicula {
+        padding: 0.8rem;
+    }
+
+    .info-director {
+        padding: 0.8rem;
+    }
+
+    .pelicula h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .director h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .pelicula .genero {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .director .pais {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+    }
+}
